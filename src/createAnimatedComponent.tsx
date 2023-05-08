@@ -196,7 +196,15 @@ export default function createAnimatedComponent(
 
       if (componentName?.endsWith('FlashList') && this._component) {
         // @ts-ignore it's FlashList specific: https://github.com/Shopify/flash-list/blob/218f314e63806b4fe926741ef73f8b9cd6ebc7eb/src/FlashList.tsx#L824
-        viewTag = findNodeHandle(this._component.getScrollableNode());
+        viewTag = findNodeHandle(
+          Platform.OS === 'android'
+            ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              this._component.getScrollableNode()
+            : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              this._component.recyclerlistview_unsafe
+        );
       }
 
       for (const key in this.props) {
