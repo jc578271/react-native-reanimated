@@ -572,10 +572,10 @@ declare module 'react-native-reanimated' {
     aref: RefObject<Animated.ScrollView>
   ): SharedValue<number>;
 
-  export function useAnimatedRefScrollHandler<TContext extends Context>(
+  export function useAnimatedRefScrollHandler<TContext extends Context = {}>(
     aref: RefObject<Animated.ScrollView>,
     handlers: ScrollHandlers<TContext> | ScrollHandler<TContext>,
-    dependencies: DependencyList = []
+    dependencies?: DependencyList
   ): void;
 
   export interface ExitAnimationsValues {
